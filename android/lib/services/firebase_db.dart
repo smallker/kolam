@@ -1,6 +1,6 @@
-import 'package:air_quality/controller/history_ctl.dart';
+import 'package:air_quality/controller/data_ctl.dart';
 import 'package:air_quality/controller/status_ctl.dart';
-import 'package:air_quality/model/history_model.dart';
+import 'package:air_quality/model/kolam_model.dart';
 import 'package:air_quality/model/status_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
@@ -20,24 +20,25 @@ class FirebaseDb {
   }
 
   static history() async {
-    final ctl = Get.put(HistoryCtl());
+    final ctl = Get.put(DataCtl());
     Query ref = FirebaseDatabase.instance.reference().child('/history');
     ref.onValue.listen(
       (event) {
-        List<HistoryModel> model = [];
+        List<KolamModel> model = [];
         DataSnapshot snapshot = event.snapshot;
         Map<dynamic, dynamic> logs = snapshot.value;
         try {
           logs.forEach(
             (key, value) {
               try {
-                model.add(HistoryModel.fromMap(value as Map<dynamic, dynamic>));
-              } catch (e) {}
+                model.add(KolamModel.fromMap(value));
+              } catch (e) {
+                print('Error : $e');
+              }
             },
           );
         } catch (e) {}
         model.sort((a, b) => a.timestamp.compareTo(b.timestamp));
-        // model.reversed.toList();
         ctl.updateHistory(model);
       },
     );

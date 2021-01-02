@@ -1,4 +1,4 @@
-import 'package:air_quality/controller/history_ctl.dart';
+import 'package:air_quality/controller/data_ctl.dart';
 import 'package:air_quality/widgets/mytext.dart';
 import 'package:air_quality/widgets/pixel.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,63 +6,42 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class HistoryPage extends StatelessWidget {
-  Widget _header() {
-    return Expanded(
-      flex: 2,
-      child: Container(
-        margin: EdgeInsets.all(
-          Pixel.x * 2,
-        ),
-        padding: EdgeInsets.all(Pixel.x * 10),
-        child: Column(
-          children: [
-            Flexible(
-              flex: 3,
-              child: Image.asset('assets/icon.png'),
-            ),
-            Flexible(
-              flex: 1,
-              child: MyText(
-                text: 'Pemadam Kebakaran',
-                color: Colors.blue,
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _body() {
     return Expanded(
       flex: 4,
-      child: GetBuilder<HistoryCtl>(
-          init: HistoryCtl(),
-          builder: (snapshot) {
-            snapshot.history = snapshot.history.reversed.toList();
-            return Container(
-              width: Pixel.x * 90,
-              height: Pixel.y * 40,
-              child: snapshot.history == null || snapshot.history.length == 0
-                  ? Center(
-                      child: MyText(
-                        text: 'Tidak ada data',
-                        color: Colors.blue,
-                        fontSize: Pixel.x * 7,
-                      ),
-                    )
-                  : ListView.builder(
-                      itemCount: snapshot.history.length,
-                      itemBuilder: (context, index) {
-                        return _item(
-                          snapshot.history[index].status,
-                          snapshot.history[index].detail,
-                          snapshot.history[index].timestamp,
-                        );
-                      },
+      child: GetBuilder<DataCtl>(
+        init: DataCtl(),
+        builder: (snapshot) {
+          snapshot.history = snapshot.history.reversed.toList();
+          return Container(
+            width: Pixel.x * 90,
+            height: Pixel.y * 40,
+            child: snapshot.history == null || snapshot.history.length == 0
+                ? Center(
+                    child: MyText(
+                      text: 'Tidak ada data',
+                      color: Colors.blue,
+                      fontSize: Pixel.x * 7,
                     ),
-            );
-          }),
+                  )
+                : ListView.builder(
+                    itemCount: snapshot.history.length,
+                    itemBuilder: (context, index) {
+                      var id = snapshot.history[index].id;
+                      var temperature = snapshot.history[index].temperature;
+                      var ph = snapshot.history[index].ph;
+                      var flow = snapshot.history[index].flow;
+                      var timestamp = snapshot.history[index].timestamp;
+                      return _item(
+                        'Kolam $id',
+                        'Suhu : $temperature  pH : $ph  Flow : $flow',
+                        timestamp,
+                      );
+                    },
+                  ),
+          );
+        },
+      ),
     );
   }
 
@@ -77,17 +56,18 @@ class HistoryPage extends StatelessWidget {
         Pixel.x * 2,
       ),
       decoration: BoxDecoration(
-          color: Colors.blue,
-          borderRadius: BorderRadius.circular(
-            Pixel.x * 3,
-          )),
+        color: Colors.blue,
+        borderRadius: BorderRadius.circular(
+          Pixel.x * 3,
+        ),
+      ),
       child: Row(
         children: [
           Expanded(
             flex: 1,
             child: Container(
               child: Icon(
-                Icons.warning,
+                Icons.history,
                 size: Pixel.x * 10,
                 color: Colors.white,
               ),
@@ -127,7 +107,6 @@ class HistoryPage extends StatelessWidget {
     Pixel().init(context);
     return Column(
       children: [
-        _header(),
         _body(),
       ],
     );

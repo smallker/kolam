@@ -1,8 +1,7 @@
 import 'package:air_quality/controller/page_ctl.dart';
 import 'package:air_quality/services/init.dart';
 import 'package:air_quality/ui/android/history_page.dart';
-import 'package:air_quality/ui/android/notification_page.dart';
-import 'package:air_quality/ui/android/status_page.dart';
+import 'package:air_quality/ui/android/status_carousel_page.dart';
 import 'package:air_quality/widgets/mytext.dart';
 import 'package:air_quality/widgets/pixel.dart';
 import 'package:flutter/material.dart';
@@ -62,31 +61,26 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 leading: Icon(
                   Icons.info,
+                  color: Colors.blue,
                 ),
                 title: MyText(
                   text: 'Status',
-                  color: Colors.grey,
+                  color: Colors.blue,
                   fontSize: Pixel.x * 5,
                 ),
                 onTap: () => snapshot.updatePage(0),
               ),
               ListTile(
-                leading: Icon(Icons.notifications),
+                leading: Icon(
+                  Icons.timelapse,
+                  color: Colors.blue,
+                ),
                 title: MyText(
-                  text: 'Notifikasi',
-                  color: Colors.grey,
+                  text: 'Histori',
+                  color: Colors.blue,
                   fontSize: Pixel.x * 5,
                 ),
                 onTap: () => snapshot.updatePage(1),
-              ),
-              ListTile(
-                leading: Icon(Icons.timelapse),
-                title: MyText(
-                  text: 'Histori',
-                  color: Colors.grey,
-                  fontSize: Pixel.x * 5,
-                ),
-                onTap: () => snapshot.updatePage(2),
               ),
             ],
           ),
@@ -96,13 +90,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> body = [
-    StatusPage(),
-    NotificationPage(),
+    StatusCarouselPage(),
     HistoryPage(),
   ];
   List<String> title = [
     'Status sensor',
-    'Notifikasi',
     'Histori',
   ];
   @override
@@ -121,7 +113,9 @@ class _HomePageState extends State<HomePage> {
                 title[snapshot.page],
               ),
               drawer: _navigationDrawer(),
-              body: Center(child: body[snapshot.page]),
+              body: Center(
+                child: body[snapshot.page],
+              ),
             ),
           ),
         );
