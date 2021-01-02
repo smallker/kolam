@@ -28,7 +28,7 @@ class _NotificationPageState extends State<NotificationPage> {
               flex: 1,
               child: MyText(
                 text: 'Pemadam Kebakaran',
-                color: Colors.orange,
+                color: Colors.blue,
               ),
             )
           ],
@@ -64,14 +64,14 @@ class _NotificationPageState extends State<NotificationPage> {
                           child: MyText(
                             text: 'Kosong',
                             fontSize: Pixel.x * 7,
-                            color: Colors.orange,
+                            color: Colors.blue,
                           ),
                         ),
                       );
                     } else
                       return Container(
                         decoration: BoxDecoration(
-                          color: Colors.orange,
+                          color: Colors.blue,
                           borderRadius: BorderRadius.circular(
                             Pixel.x * 5,
                           ),

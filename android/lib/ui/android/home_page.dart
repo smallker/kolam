@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.orange,
+                  color: Colors.blue,
                 ),
               ),
               ListTile(
@@ -113,7 +113,7 @@ class _HomePageState extends State<HomePage> {
       initState: Init.init(),
       builder: (snapshot) {
         return Container(
-          color: Colors.orange,
+          color: Colors.blue,
           child: SafeArea(
             child: Scaffold(
               backgroundColor: Colors.white,

@@ -23,7 +23,7 @@ class StatusPage extends StatelessWidget {
               flex: 1,
               child: MyText(
                 text: 'Pemadam Kebakaran',
-                color: Colors.orange,
+                color: Colors.blue,
               ),
             )
           ],
@@ -44,7 +44,7 @@ class StatusPage extends StatelessWidget {
         Pixel.x * 2,
       ),
       decoration: BoxDecoration(
-        color: Colors.orange,
+        color: Colors.blue,
         borderRadius: BorderRadius.circular(
           Pixel.x * 5,
         ),

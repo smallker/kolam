@@ -24,7 +24,7 @@ class HistoryPage extends StatelessWidget {
               flex: 1,
               child: MyText(
                 text: 'Pemadam Kebakaran',
-                color: Colors.orange,
+                color: Colors.blue,
               ),
             )
           ],
@@ -47,7 +47,7 @@ class HistoryPage extends StatelessWidget {
                   ? Center(
                       child: MyText(
                         text: 'Tidak ada data',
-                        color: Colors.orange,
+                        color: Colors.blue,
                         fontSize: Pixel.x * 7,
                       ),
                     )
@@ -77,7 +77,7 @@ class HistoryPage extends StatelessWidget {
         Pixel.x * 2,
       ),
       decoration: BoxDecoration(
-          color: Colors.orange,
+          color: Colors.blue,
           borderRadius: BorderRadius.circular(
             Pixel.x * 3,
           )),
