@@ -24,10 +24,12 @@ void loop()
   /*
     Data dummy
   */
+  String id = "1";
   int temperature = 30 + (rand() % 10);
   float ph = rand()%10 + 0.1;
   int flow = rand()%100 +100;
 
+  history["id"] = id;
   history["temperature"] = (String)temperature;
   history["ph"] = (String)ph;
   history["flow"] = (String)flow;
