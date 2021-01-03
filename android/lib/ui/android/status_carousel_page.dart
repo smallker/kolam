@@ -102,7 +102,18 @@ class _StatusCarouselPageState extends State<StatusCarouselPage> {
     );
   }
 
-  Widget _dot() {
+  Widget _dot(int index) {
+    return Container(
+      margin: EdgeInsets.all(1),
+      width: Pixel.x * 2,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: carouselIndex == index ? Colors.blue : Colors.grey,
+      ),
+    );
+  }
+
+  Widget _dots() {
     return Expanded(
       flex: 1,
       child: Container(
@@ -110,30 +121,10 @@ class _StatusCarouselPageState extends State<StatusCarouselPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              margin: EdgeInsets.all(1),
-              width: Pixel.x * 2,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: carouselIndex == 0 ? Colors.blue : Colors.grey,
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(1),
-              width: Pixel.x * 2,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: carouselIndex == 1 ? Colors.blue : Colors.grey,
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(1),
-              width: Pixel.x * 2,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: carouselIndex == 2 ? Colors.blue : Colors.grey,
-              ),
-            ),
+            _dot(0),
+            _dot(1),
+            _dot(2),
+            _dot(3),
           ],
         ),
       ),
@@ -171,11 +162,12 @@ class _StatusCarouselPageState extends State<StatusCarouselPage> {
                       _kolam(snapshot.kolam0),
                       _kolam(snapshot.kolam1),
                       _kolam(snapshot.kolam2),
+                      _kolam(snapshot.kolam3),
                     ],
                   );
                 }),
           ),
-          _dot(),
+          _dots(),
         ],
       ),
     );

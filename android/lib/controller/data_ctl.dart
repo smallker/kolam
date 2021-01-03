@@ -8,6 +8,8 @@ class DataCtl extends GetxController {
       KolamModel(id: '0', flow: '0', ph: '0', temperature: '0', timestamp: 0);
   KolamModel kolam2 =
       KolamModel(id: '0', flow: '0', ph: '0', temperature: '0', timestamp: 0);
+  KolamModel kolam3 =
+      KolamModel(id: '0', flow: '0', ph: '0', temperature: '0', timestamp: 0);
   // KolamModel kolam1;
   // KolamModel kolam2;
   List<KolamModel> history;
@@ -25,6 +27,9 @@ class DataCtl extends GetxController {
             break;
           case 2:
             this.kolam2 = element;
+            break;
+          case 3:
+            this.kolam3 = element;
             break;
           default:
             break;
